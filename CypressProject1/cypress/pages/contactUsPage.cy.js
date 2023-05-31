@@ -2,6 +2,7 @@
 
 class contactUsPage{
     elements={
+        contactUsTitle : () => cy.get('.display-4'),
         alertAccept : () => cy.get('#hs-eu-confirmation-button'),
         firstNameInput : () => cy.get('#firstname-b15d4232-7672-429d-81fd-a00020bddf95'),
         lastNameInput : () => cy.get('#lastname-b15d4232-7672-429d-81fd-a00020bddf95'),
@@ -17,38 +18,45 @@ class contactUsPage{
         errorTxtMobileNo : () => cy.get('.hs_mobilephone > .no-list > li > .hs-error-msg'),
     }
 
+    contactUsTitle(){
+       return this.elements.contactUsTitle().click();
+    }
+
     alertAccept(){
-        this.elements.alertAccept().click();
+       return this.elements.alertAccept().click();
     }
 
     enterFirstName(firstName)
-   {
-    //    this.elements.firstNameInput().clear();
-       this.elements.firstNameInput().type(firstName);
-   }
-   enterLastName(lastName)
-   {
-    //    this.elements.lastNameInput().clear();
-       this.elements.lastNameInput().type(lastName);
-   }
-   enterEmail(email)
-   {
-    //    this.elements.emailInput().clear();
-       this.elements.emailInput().type(email);
-   }
-   enterMobilePhoneNumber(mobilePhoneNumber)
-   {
-    //    this.elements.mobilePhoneNumberInput().clear();
-       this.elements.mobilePhoneNumberInput().type(mobilePhoneNumber);
-   }
-   enterMessage(messageBox)
-   {
-    //    this.elements.messageBoxInput().clear();
-       this.elements.messageBoxInput().type(messageBox);
-   }
+    {
+        return this.elements.firstNameInput().type(firstName, { force: true });   
+    }
+    
+    enterLastName(lastName)
+    {
+        return this.elements.lastNameInput().type(lastName, { force: true });
+    }
+
+    enterEmail(email)
+    {
+        return this.elements.emailInput().type(email, { force: true });
+    }
+    enterMobilePhoneNumber(mobilePhoneNumber)
+    {
+        return this.elements.mobilePhoneNumberInput().type(mobilePhoneNumber, { force: true });
+    }
+   
+    enterMessage(messageBox)
+    {
+        return this.elements.messageBoxInput().type(messageBox, { force: true });
+    }
 
     submitForm(){
-        this.elements.sendMessageButton().click();
+       return this.elements.sendMessageButton().click({ force: true });
+    }
+
+    successTxt()
+    {
+        return this.elements.successTxt();
     }
 }
 
