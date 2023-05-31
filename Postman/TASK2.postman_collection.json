@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "49702fb5-785e-4adc-86f9-3bc73fc2fe84",
+		"name": "TASK2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://api.restful-api.dev/objects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Assertion 1: Verify the response status code is 201 (Created)\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// Assertion 2: Validate the response body contains an array of objects\r",
+							"pm.test(\"Verify response body contains an array of objects\", function () {\r",
+							"  const responseBody = pm.response.json();\r",
+							"  pm.expect(responseBody).to.be.an('array');\r",
+							"  // Check if the array contains objects\r",
+							"  pm.expect(responseBody.every(item => typeof item === 'object')).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Assertion 3: for the first object\r",
+							"pm.test(\"Object 1 has correct values\", function () {\r",
+							"    var response = pm.response.json();\r",
+							"    pm.expect(response[0].id).to.eql(\"1\");\r",
+							"    pm.expect(response[0].name).to.eql(\"Google Pixel 6 Pro\");\r",
+							"    pm.expect(response[0].data.color).to.eql(\"Cloudy White\");\r",
+							"    pm.expect(response[0].data.capacity).to.eql(\"128 GB\");\r",
+							"});\r",
+							"\r",
+							"// Assertion 4: Verify all records\r",
+							"const responseBody1 = pm.response.text();\r",
+							"pm.environment.set(\"expectedResponseBody\", responseBody1);\r",
+							"\r",
+							"const expectedResponseBody = JSON.parse(pm.environment.get(\"expectedResponseBody\"));\r",
+							"const actualResponse = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Verify response matches expected response body\", function () {\r",
+							"  pm.expect(actualResponse).to.eql(expectedResponseBody);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/C:/Users/Rupal/Desktop/expectedResponse.json"
+					},
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.restful-api.dev/objects?",
+					"protocol": "https",
+					"host": [
+						"api",
+						"restful-api",
+						"dev"
+					],
+					"path": [
+						"objects"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.restful-api.dev/objects Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Assertion 1: Verify the response status code is 201 (Created)\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// Assertion 2: Validate the response body contains an array of objects\r",
+							"pm.test(\"Verify response body contains an array of objects\", function () {\r",
+							"  const responseBody = pm.response.json();\r",
+							"  pm.expect(responseBody).to.be.an('array');\r",
+							"  // Check if the array contains objects\r",
+							"  pm.expect(responseBody.every(item => typeof item === 'object')).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Assertion 3: for the first object\r",
+							"pm.test(\"Object 1 has correct values\", function () {\r",
+							"    var response = pm.response.json();\r",
+							"    pm.expect(response[0].id).to.eql(\"1\");\r",
+							"    pm.expect(response[0].name).to.eql(\"Google Pixel 6 Pro\");\r",
+							"    pm.expect(response[0].data.color).to.eql(\"Cloudy White\");\r",
+							"    pm.expect(response[0].data.capacity).to.eql(\"128 GB\");\r",
+							"});\r",
+							"\r",
+							"// Assertion 4: Verify all records\r",
+							"const responseBody1 = pm.response.text();\r",
+							"pm.environment.set(\"expectedResponseBody\", responseBody1);\r",
+							"\r",
+							"const expectedResponseBody = JSON.parse(pm.environment.get(\"expectedResponseBody\"));\r",
+							"const actualResponse = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Verify response matches expected response body\", function () {\r",
+							"  pm.expect(actualResponse).to.eql(expectedResponseBody);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/C:/Users/Rupal/Desktop/expectedResponse.json"
+					},
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.restful-api.dev/objects?id=1,5,10",
+					"protocol": "https",
+					"host": [
+						"api",
+						"restful-api",
+						"dev"
+					],
+					"path": [
+						"objects"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1,5,10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
